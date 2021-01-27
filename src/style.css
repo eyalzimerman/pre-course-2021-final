@@ -6,3 +6,35 @@
 div > * {
     display: inline;
 }
+body {
+    background-color: rgb(238, 163, 136);
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+}
+header {
+    font-size: larger;
+    min-height: 20vh;
+}
+header, section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button, select {
+    cursor: pointer;
+}
+#control-section > input,
+select,
+button {
+    border: none;
+    padding: 12px;
+    margin: 5px;
+}
+ul > div {
+    padding: 8px;
+}
+.todo-text,
+.todo-created-at,
+.todo-priority {
+    padding: 5px;
+}
