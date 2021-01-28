@@ -63,3 +63,50 @@ function sortTodoList (e) {
         ulList.appendChild(sortArr[k]);
     }
 }
+
+
+//save to local storage
+function saveLocalStorage () {
+    let todos = ulList.querySelectorAll('.todo-container');
+    let arrOfAllTasks = [];
+    for (let i = 0; i < todos.length; i++) {
+        let arrTask = [];
+        arrTask[0] = todos[i].getElementsByClassName('todo-priority')[0].innerText;
+        arrTask[1] = todos[i].getElementsByClassName('todo-text')[0].innerText;
+        arrTask[2] = todos[i].getElementsByClassName('todo-created-at')[0].innerText;
+        arrOfAllTasks.push(arrTask);
+    }
+    let JSONReadyArr = JSON.stringify(arrOfAllTasks);
+    localStorage.setItem("tasks", JSONReadyArr);
+}
+
+// get data from local storage
+function getDataFromLocalStorage () {
+    if (localStorage.tasks) {
+        let arrOfAllTasksBack = JSON.parse(localStorage.getItem("tasks"));
+        for (let i = 0; i < arrOfAllTasksBack.length; i++) {
+            const todoContainer = document.createElement('div');  //todo task container in div
+            const todoPriority = document.createElement('div');  //todo priority in div
+            const todoCreatedAt = document.createElement('div');  //time to do created in div
+            const todoText = document.createElement('div');  //todo task text in div
+            const deleteBtn = document.createElement('button');
+
+            todoContainer.className = 'todo-container';
+            todoText.className = 'todo-text';
+            todoCreatedAt.className = 'todo-created-at';
+            todoPriority.className = 'todo-priority';
+            deleteBtn.className = 'delete-button';
+
+            todoPriority.innerText = arrOfAllTasksBack[i][0];
+            todoText.innerText = arrOfAllTasksBack[i][1];
+            todoCreatedAt.innerText = arrOfAllTasksBack[i][2];
+            deleteBtn.textContent = 'Delete';
+            
+            todoContainer.append(todoPriority, todoText, todoCreatedAt, deleteBtn);
+            ulList.appendChild(todoContainer);
+        }
+            localStorage.setItem("tasks", JSON.stringify(arrOfAllTasksBack));
+    } else {
+        localStorage.setItem("tasks", []);
+    }
+}
