@@ -5,9 +5,11 @@ const addBtn = document.querySelector('#add-button');
 const textInput = document.querySelector('#text-input');
 const prioritySelector = document.querySelector('#priority-selector');
 const ulList = document.querySelector('ul');
+const sortBtn = document.querySelector('#sort-button');
 
 //event listeners
 addBtn.addEventListener('click', addTodo);
+sortBtn.addEventListener('click', sortTodoList);
 
 //add todo item
 function addTodo (e) {
@@ -25,13 +27,33 @@ function addTodo (e) {
         todoPriority.className = 'todo-priority';
         
         let date = new Date();
-        todoCreatedAt.innerHTML = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        todoCreatedAt.innerText = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
-        todoText.innerHTML = inputValue;
-        todoPriority.innerHTML = prioritySelector.value;
+        todoText.innerText = inputValue;
+        todoPriority.innerText = prioritySelector.value;
 
         todoContainer.append(todoPriority, todoText, todoCreatedAt);
         ulList.append(todoContainer);
+        prioritySelector.value = 1;
+    } else {
+        alert('WRITE A TASK!');
     }
     textInput.focus();
+}
+
+//sort the todo list by priority
+function sortTodoList (e) {
+    let arrOfPriority = document.querySelectorAll('.todo-priority');
+    let sortArr = [];
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 0; j < arrOfPriority.length; j++) {
+            if (i.toString() === arrOfPriority[j].innerText) {
+                sortArr.push(arrOfPriority[j].parentElement);
+                ulList.removeChild(arrOfPriority[j].parentElement);
+            }
+        }
+    }
+    for (let k = sortArr.length - 1; k >= 0; k--) {
+        ulList.appendChild(sortArr[k]);
+    }
 }
