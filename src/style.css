@@ -13,10 +13,10 @@ body {
 }
 header {
     font-size: larger;
-    min-height: 20vh;
+    min-height: 15vh;
 }
 header, section {
-    display: flex;
+    text-align: center;
     justify-content: center;
     align-items: center;
 }

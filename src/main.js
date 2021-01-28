@@ -6,6 +6,9 @@ const textInput = document.querySelector('#text-input');
 const prioritySelector = document.querySelector('#priority-selector');
 const ulList = document.querySelector('ul');
 const sortBtn = document.querySelector('#sort-button');
+let counterTitle = document.querySelector('#counter');
+counterTitle.innerHTML = 'No Tasks To Do';
+let counter = 0;
 
 //event listeners
 document.addEventListener('DOMContentLoaded', getDataFromLocalStorage);
@@ -44,7 +47,8 @@ function addTodo (e) {
         alert('WRITE A TASK!');
     }
     textInput.focus();
-    
+    counter++;
+    counterTasks(counter);
 }
 
 //sort the todo list by priority
@@ -106,7 +110,17 @@ function getDataFromLocalStorage () {
             ulList.appendChild(todoContainer);
         }
             localStorage.setItem("tasks", JSON.stringify(arrOfAllTasksBack));
+            counterTasks(arrOfAllTasksBack.length);
+            counter = arrOfAllTasksBack.length;
     } else {
         localStorage.setItem("tasks", []);
+    }
+}
+
+function counterTasks (count) {
+    if (count === 0) {
+        counterTitle.innerHTML = 'No Tasks To Do';
+    } else {
+        counterTitle.innerHTML = `${count}`;
     }
 }
