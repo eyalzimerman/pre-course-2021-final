@@ -7,9 +7,10 @@ const prioritySelector = document.querySelector('#priority-selector');
 const ulList = document.querySelector('ul');
 const sortBtn = document.querySelector('#sort-button');
 let counterTitle = document.querySelector('#counter');
-counterTitle.innerHTML = 'No Tasks To Do';
+let counterText = document.querySelector('#counter-text');
 let counter = 0;
 let arrOfObjTasks = [];
+let arrOfDeletedTodo = [];
 
 //event listeners
 document.addEventListener('DOMContentLoaded', getTasksFromJSONBin);
@@ -39,7 +40,7 @@ function addTodo (e) {
 
         todoText.innerText = inputValue;
         todoPriority.innerText = prioritySelector.value;
-        deleteBtn.innerText = 'Delete';
+        deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
 
         const taskObj = {
             text: inputValue,
@@ -66,6 +67,12 @@ function addTodo (e) {
 //function to delete tasks
 function deleteTodo (e) {
     let item = e.target.parentElement;
+    const deletedTask = {
+        text: item.querySelector('.todo-text').innerHTML,
+        priority: item.querySelector('.todo-priority').innerText,
+        taskCreatedAt: item.querySelector('.todo-created-at').innerText
+    }
+    arrOfDeletedTodo.push(deletedTask);
     const deletedObj = item.querySelector('.todo-created-at').innerText;
     arrOfObjTasks = arrOfObjTasks.filter(taskObj => taskObj.taskCreatedAt != deletedObj);
     item.remove();
@@ -99,8 +106,10 @@ function sortTodoList (e) {
 function counterTasks (count) {
     if (count === 0) {
         counterTitle.innerHTML = 'No Tasks To Do';
+        counterText.innerText = '';
     } else {
         counterTitle.innerHTML = `${count}`;
+        counterText.innerText = 'Tasks To Do';
     }
 }
 
@@ -127,11 +136,11 @@ async function getTasksFromJSONBin() {
     });
     let data = await response.json();
     arrOfObjTasks = data.record["my-todo"];
-    insertTasksToHtml();
+    insertTasksFromJSONBINToHtml();
 }
 
 //function to insert data from JSONBIN to HTML
-function insertTasksToHtml () {
+function insertTasksFromJSONBINToHtml () {
     for (let i = 0; i < arrOfObjTasks.length; i++) {
         const todoContainer = document.createElement('div');  //todo task container in div
         const todoPriority = document.createElement('div');  //todo priority in div
@@ -148,7 +157,7 @@ function insertTasksToHtml () {
         todoPriority.innerText = arrOfObjTasks[i].priority;
         todoText.innerText = arrOfObjTasks[i].text;
         todoCreatedAt.innerText = arrOfObjTasks[i].taskCreatedAt;
-        deleteBtn.textContent = 'Delete';
+        deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
         
         todoContainer.append(todoPriority, todoText, todoCreatedAt, deleteBtn);
         ulList.appendChild(todoContainer);
