@@ -2,9 +2,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    background-color: rgb(138, 173, 197);
+}
 
 body {
-    background-color: #f5f5f5;
+    background-color: #ececec;
     width: 60%;
     margin: 0 auto;
     padding: 0;
@@ -37,7 +40,7 @@ button {
 }
 
 ul > div {
-    padding: 8px;
+    padding: 4px;
 }
 
 .todo-text,
@@ -135,7 +138,7 @@ ul > .todo-container:hover {
 /*type writer animation*/
 #type-writer {
     overflow: hidden; 
-    border-right: .15em solid rgb(104, 170, 214); 
+    border-right: .15em solid rgb(85, 74, 74); 
     white-space: nowrap; 
     margin: 0 auto;
     letter-spacing: .15em;
@@ -151,5 +154,10 @@ ul > .todo-container:hover {
   
 @keyframes blink-caret {
     from, to { border-color: transparent }
-    50% { border-color: rgb(104, 170, 214); }
+    50% { border-color: rgb(85, 74, 74); }
+}
+
+#main {
+    -webkit-box-shadow: 12px -6px 12px 3px rgba(0,0,0,0.72); 
+    box-shadow: 12px -6px 12px 3px rgba(0,0,0,0.72);
 }

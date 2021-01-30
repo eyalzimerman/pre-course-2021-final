@@ -20,6 +20,7 @@ counterTitle.innerHTML = 'No Tasks To Do';
 document.addEventListener('DOMContentLoaded', getTasksFromJSONBin);
 addBtn.addEventListener('click', addTodo);
 sortBtn.addEventListener('click', sortTodoList);
+undoBtn.addEventListener('click', undoDelete);
 
 //add todo item
 function addTodo (e) {
@@ -88,13 +89,6 @@ function deleteTodo (e) {
     counter--;
     counterTasks(counter);
     textInput.focus();
-    if (item.className === 'todo-container completed') {
-        counterDone--; 
-        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
-    }
-    if (item.className != 'todo-container completed') {
-        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
-    }
 
     updateTaskToJSONBin();
 }
@@ -130,7 +124,7 @@ function counterTasks (count) {
 
 //function to update tasks in JSONBIN
 async function updateTaskToJSONBin () {
-    fetch('https://api.jsonbin.io/v3/b/6012f2cc050e9474fe36b1e8', {
+    fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d', {
     method: 'PUT',
     headers: {
     'Content-Type': 'application/json',
@@ -142,7 +136,7 @@ async function updateTaskToJSONBin () {
 
 //function to get tasks from JSONBIN   
 async function getTasksFromJSONBin() {
-    let response = await fetch("https://api.jsonbin.io/v3/b/6012f2cc050e9474fe36b1e8", {
+    let response = await fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d/latest', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -208,3 +202,42 @@ function checkTask (e) {
 $(window).load(function() {
     $(".se-pre-con").fadeOut("medium");
 });
+
+
+//function to undo deleted task
+function undoDelete (e) {
+    if(arrOfDeletedTodo.length > 0) {
+        let backTodo = arrOfDeletedTodo.pop();  
+        arrOfObjTasks.push(backTodo);  
+        const todoContainer = document.createElement('div');  //todo task container in div
+        const todoPriority = document.createElement('div');  //todo priority in div
+        const todoCreatedAt = document.createElement('div');  //time to do created in div
+        const todoText = document.createElement('div');  //todo task text in div
+        const deleteBtn = document.createElement('button');
+        const checkBtn = document.createElement('input');  //checkbox
+
+        todoContainer.className = 'todo-container';
+        todoText.className = 'todo-text';
+        todoCreatedAt.className = 'todo-created-at';
+        todoPriority.className = 'todo-priority';
+        deleteBtn.className = 'delete-button';
+        checkBtn.className = 'check-button';
+
+        todoPriority.innerText = backTodo.priority;
+        todoText.innerText = backTodo.text;
+        todoCreatedAt.innerText = backTodo.taskCreatedAt;
+        deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        checkBtn.setAttribute('type', 'checkbox');
+        
+        todoContainer.append(todoPriority, todoText, todoCreatedAt, checkBtn, deleteBtn);
+        ulList.appendChild(todoContainer);
+        deleteBtn.addEventListener ('click', deleteTodo);
+        checkBtn.addEventListener('click', checkTask);
+        counter++;
+        counterTasks(arrOfObjTasks.length);
+        counter = arrOfObjTasks.length;
+
+        textInput.focus();
+        updateTaskToJSONBin;
+    }
+}
