@@ -6,12 +6,15 @@ const textInput = document.querySelector('#text-input');
 const prioritySelector = document.querySelector('#priority-selector');
 const ulList = document.querySelector('ul');
 const sortBtn = document.querySelector('#sort-button');
-let counterTitle = document.querySelector('#counter');
-let counterText = document.querySelector('#counter-text');
-let undoBtn = document.querySelector('#undo-button');
+const counterTitle = document.querySelector('#counter');
+const counterText = document.querySelector('#counter-text');
+const undoBtn = document.querySelector('#undo-button');
+const taskDone = document.querySelector('#task-done');
 let counter = 0;
+let counterDone = 0;
 let arrOfObjTasks = [];
 let arrOfDeletedTodo = [];
+counterTitle.innerHTML = 'No Tasks To Do';
 
 //event listeners
 document.addEventListener('DOMContentLoaded', getTasksFromJSONBin);
@@ -73,7 +76,7 @@ function addTodo (e) {
 function deleteTodo (e) {
     let item = e.target.parentElement;
     const deletedTask = {
-        text: item.querySelector('.todo-text').innerHTML,
+        text: item.querySelector('.todo-text').innerText,
         priority: item.querySelector('.todo-priority').innerText,
         taskCreatedAt: item.querySelector('.todo-created-at').innerText
     }
@@ -85,6 +88,13 @@ function deleteTodo (e) {
     counter--;
     counterTasks(counter);
     textInput.focus();
+    if (item.className === 'todo-container completed') {
+        counterDone--; 
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
+    }
+    if (item.className != 'todo-container completed') {
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
+    }
 
     updateTaskToJSONBin();
 }
@@ -127,7 +137,7 @@ async function updateTaskToJSONBin () {
     'X-Master-Key': '$2b$10$3c8HlT7Mkm6Fmhp4/y0UveKGq8qFaFdTiTNKewqhEuXpQ9l7Itxdm',
   },
     body: JSON.stringify({"my-todo": arrOfObjTasks}) 
-})
+});
 }
 
 //function to get tasks from JSONBIN   
@@ -182,6 +192,14 @@ function insertTasksFromJSONBINToHtml () {
 function checkTask (e) {
     const complete = e.target.parentElement;
     complete.classList.toggle('completed');
+    if (complete.className === 'todo-container completed') {
+        counterDone++; 
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
+    }
+    if (complete.className != 'todo-container completed') {
+        counterDone--;
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
+    }
     textInput.focus(); 
 }
 

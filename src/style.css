@@ -55,6 +55,11 @@ h1 {
     width: 350px;
 }
 
+h5 {
+    font-family: 'Hachi Maru Pop', cursive;
+    letter-spacing: .15em;
+}
+
 #control-section > button {
     background-color: rgb(176, 204, 238);
 }
@@ -83,7 +88,7 @@ ul > .todo-container:hover {
 
 .delete-button:hover {
     color: rgb(0, 0, 0);
-    background: coral;
+    background: rgb(241, 82, 24);
 }
 
 .check-button {
@@ -105,15 +110,17 @@ ul > .todo-container:hover {
     opacity: 0.5;
 }
 
-/*loader*/
-.no-js #loader { 
-    display: none;  
+.fa-trash-alt {
+    pointer-events: none;
 }
-.js #loader {
-     display: block; 
-     position: absolute; 
-     left: 100px; 
-     top: 0; 
+
+/*loader*/
+#loader {
+    display: none;  
+    display: block; 
+    position: absolute; 
+    left: 100px; 
+    top: 0; 
 }
 .se-pre-con {
 	position: fixed;
@@ -133,7 +140,7 @@ ul > .todo-container:hover {
     margin: 0 auto;
     letter-spacing: .15em;
     animation: 
-      typing 3s steps(40),
+      typing 2.5s steps(40),
       blink-caret .75s infinite;
 }
   
