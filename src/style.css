@@ -17,13 +17,16 @@ header {
     min-height: 15vh;
     font-family: 'Hachi Maru Pop', cursive;
 }
+
 header, section {
     text-align: center;
     margin-top: 30px;
 }
+
 button, select {
     cursor: pointer;
 }
+
 #control-section > input,
 select,
 button {
@@ -32,23 +35,29 @@ button {
     margin: 5px;
     border-radius: 9px;
 }
+
 ul > div {
     padding: 8px;
 }
+
 .todo-text,
 .todo-created-at,
 .todo-priority {
     padding: 5px;
 }
+
 h4 {
     display: inline;
     margin-top: 30px;
 }
 
+h1 {
+    width: 350px;
+}
+
 #control-section > button {
     background-color: rgb(176, 204, 238);
 }
-
 
 .ul {
     color: #555;
@@ -96,7 +105,6 @@ ul > .todo-container:hover {
     opacity: 0.5;
 }
 
-
 /*loader*/
 .no-js #loader { 
     display: none;  
@@ -115,4 +123,26 @@ ul > .todo-container:hover {
 	height: 100%;
 	z-index: 9999;
 	background: url(https://smallenvelop.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+}
+
+/*type writer animation*/
+#type-writer {
+    overflow: hidden; 
+    border-right: .15em solid rgb(104, 170, 214); 
+    white-space: nowrap; 
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: 
+      typing 3s steps(40),
+      blink-caret .75s infinite;
+}
+  
+@keyframes typing {
+    from { width: 0 }
+    to { width: 40% }
+}
+  
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: rgb(104, 170, 214); }
 }
