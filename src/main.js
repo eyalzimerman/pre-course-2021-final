@@ -27,12 +27,14 @@ function addTodo (e) {
         const todoCreatedAt = document.createElement('div');  //time to do created in div
         const todoText = document.createElement('div');  //todo task text in div
         const deleteBtn = document.createElement('button');  //delete button 
+        const checkBtn = document.createElement('input');  //checkbox
 
         todoContainer.className = 'todo-container';
         todoText.className = 'todo-text';
         todoCreatedAt.className = 'todo-created-at';
         todoPriority.className = 'todo-priority';
         deleteBtn.className = 'delete-button';
+        checkBtn.className = 'check-button';
 
         let date = new Date();
         let dateSQLFormat = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
@@ -41,6 +43,7 @@ function addTodo (e) {
         todoText.innerText = inputValue;
         todoPriority.innerText = prioritySelector.value;
         deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        checkBtn.setAttribute('type', 'checkbox');
 
         const taskObj = {
             text: inputValue,
@@ -49,11 +52,12 @@ function addTodo (e) {
         }
         arrOfObjTasks.push(taskObj);
 
-        todoContainer.append(todoPriority, todoText, todoCreatedAt, deleteBtn);
+        todoContainer.append(todoPriority, todoText, todoCreatedAt, checkBtn, deleteBtn);
         ulList.append(todoContainer);
         counter++;
 
         deleteBtn.addEventListener('click', deleteTodo);
+        checkBtn.addEventListener('click', checkTask);
 
         prioritySelector.value = 1;
     } else {
@@ -147,24 +151,34 @@ function insertTasksFromJSONBINToHtml () {
         const todoCreatedAt = document.createElement('div');  //time to do created in div
         const todoText = document.createElement('div');  //todo task text in div
         const deleteBtn = document.createElement('button');
+        const checkBtn = document.createElement('input');  //checkbox
 
         todoContainer.className = 'todo-container';
         todoText.className = 'todo-text';
         todoCreatedAt.className = 'todo-created-at';
         todoPriority.className = 'todo-priority';
         deleteBtn.className = 'delete-button';
+        checkBtn.className = 'check-button';
 
         todoPriority.innerText = arrOfObjTasks[i].priority;
         todoText.innerText = arrOfObjTasks[i].text;
         todoCreatedAt.innerText = arrOfObjTasks[i].taskCreatedAt;
         deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        checkBtn.setAttribute('type', 'checkbox');
         
-        todoContainer.append(todoPriority, todoText, todoCreatedAt, deleteBtn);
+        todoContainer.append(todoPriority, todoText, todoCreatedAt, checkBtn, deleteBtn);
         ulList.appendChild(todoContainer);
         deleteBtn.addEventListener ('click', deleteTodo);
+        checkBtn.addEventListener('click', checkTask);
 
         counterTasks(arrOfObjTasks.length);
         counter = arrOfObjTasks.length;
     }
     textInput.focus();
+}
+
+function checkTask (e) {
+   const complete = e.target.parentElement;
+   complete.classList.toggle('completed');
+   textInput.focus();
 }

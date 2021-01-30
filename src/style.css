@@ -46,7 +46,7 @@ h4 {
 }
 
 #control-section > button {
-    background-color: yellowgreen;
+    background-color: rgb(176, 204, 238);
 }
 
 
@@ -64,6 +64,8 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Gochi Hand', cursive;
+    
 }
 
 ul > .todo-container:hover {
@@ -71,6 +73,25 @@ ul > .todo-container:hover {
 }
 
 .delete-button:hover {
-    color: white;
+    color: rgb(0, 0, 0);
     background: coral;
+}
+
+.check-button {
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:1px solid #555;
+    cursor: pointer;
+}
+.check-button:checked {
+    background: rgb(73, 238, 51);
+
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
 }
