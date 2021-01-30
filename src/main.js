@@ -8,6 +8,7 @@ const ulList = document.querySelector('ul');
 const sortBtn = document.querySelector('#sort-button');
 let counterTitle = document.querySelector('#counter');
 let counterText = document.querySelector('#counter-text');
+let undoBtn = document.querySelector('#undo-button');
 let counter = 0;
 let arrOfObjTasks = [];
 let arrOfDeletedTodo = [];
@@ -177,8 +178,15 @@ function insertTasksFromJSONBINToHtml () {
     textInput.focus();
 }
 
+//function to check button
 function checkTask (e) {
-   const complete = e.target.parentElement;
-   complete.classList.toggle('completed');
-   textInput.focus();
+    const complete = e.target.parentElement;
+    complete.classList.toggle('completed');
+    textInput.focus(); 
 }
+
+
+//loader function
+$(window).load(function() {
+    $(".se-pre-con").fadeOut("medium");
+});
