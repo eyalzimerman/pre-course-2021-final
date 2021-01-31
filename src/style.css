@@ -91,7 +91,7 @@ ul > .todo-container:hover {
 
 .delete-button:hover {
     color: rgb(0, 0, 0);
-    background: rgb(241, 82, 24);
+    background: rgb(236, 9, 9);
 }
 
 .check-button {
@@ -160,4 +160,17 @@ ul > .todo-container:hover {
 #main {
     -webkit-box-shadow: 12px -6px 12px 3px rgba(0,0,0,0.72); 
     box-shadow: 12px -6px 12px 3px rgba(0,0,0,0.72);
+}
+
+#reset-data {
+    display: flex;
+    left: 0;
+    top: 0;
+    background-color: rgb(236, 9, 9);
+    opacity: 0.5;
+    font-size: larger;
+}
+#reset-data:hover {
+    color: black;
+    opacity: 1;
 }

@@ -10,6 +10,7 @@ const counterTitle = document.querySelector('#counter');
 const counterText = document.querySelector('#counter-text');
 const undoBtn = document.querySelector('#undo-button');
 const taskDone = document.querySelector('#task-done');
+const resetData = document.querySelector('#reset-data');
 let counter = 0;
 let counterDone = 0;
 let arrOfObjTasks = [];
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', getTasksFromJSONBin);
 addBtn.addEventListener('click', addTodo);
 sortBtn.addEventListener('click', sortTodoList);
 undoBtn.addEventListener('click', undoDelete);
+resetData.addEventListener('click', resetAllData);
 
 //add todo task
 function addTodo (e) {
@@ -214,4 +216,23 @@ function createTasks (onePriority, texts, time) {
     checkBtn.addEventListener('click', checkTask);
 
     prioritySelector.value = 1;
+}
+
+//function to reset all page and delete all tasks
+function resetAllData (e) {
+    let alertMessage = confirm('Are You Sure You Want Delete All Tasks?');
+    if (alertMessage === true) {
+        let resetTasks = ulList.querySelectorAll('.todo-container');
+        for (let i = 0; i < resetTasks.length; i++) {
+            resetTasks[i].remove();
+            counter--;
+            counterTasks(counter);
+            textInput.focus();
+        }
+        arrOfObjTasks = [];
+        updateTaskToJSONBin();
+    } else {
+        textInput.focus();
+        return;
+    }
 }
