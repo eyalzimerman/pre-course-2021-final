@@ -45,7 +45,11 @@ function addTodo (e) {
         counter++;
 
     } else {
-        alert('WRITE A TASK!');
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Need Write A Task',
+        });
     }
 
     textInput.focus();
@@ -220,19 +224,30 @@ function createTasks (onePriority, texts, time) {
 
 //function to reset all page and delete all tasks
 function resetAllData (e) {
-    let alertMessage = confirm('Are You Sure You Want Delete All Tasks?');
-    if (alertMessage === true) {
-        let resetTasks = ulList.querySelectorAll('.todo-container');
-        for (let i = 0; i < resetTasks.length; i++) {
-            resetTasks[i].remove();
-            counter--;
-            counterTasks(counter);
-            textInput.focus();
-        }
-        arrOfObjTasks = [];
-        updateTaskToJSONBin();
-    } else {
-        textInput.focus();
-        return;
-    }
+    Swal.fire({
+        title: 'Are you sure You Want Delete The File?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((alertMessage) => {
+        if (alertMessage.isConfirmed) {
+            let resetTasks = ulList.querySelectorAll('.todo-container');
+            for (let i = 0; i < resetTasks.length; i++) {
+                resetTasks[i].remove();
+                counter--;
+                counterTasks(counter);
+                textInput.focus();
+            }
+            arrOfObjTasks = [];
+            updateTaskToJSONBin();
+            Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+        };
+    });
 }
