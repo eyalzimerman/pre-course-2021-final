@@ -166,8 +166,8 @@ ul > .todo-container:hover {
     left: 0;
     top: 0;
     background-color: rgb(236, 9, 9);
-    opacity: 0.5;
-    font-size: larger;
+    opacity: 0.6;
+    font-size: large;
 }
 #reset-data:hover {
     color: black;

@@ -207,12 +207,6 @@ function createTasks (onePriority, texts, time) {
     deleteBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
     checkBtn.setAttribute('type', 'checkbox');
 
-    const taskObj = {
-        text: texts,
-        priority: onePriority,
-        taskCreatedAt: time
-    }
-
     todoContainer.append(todoPriority, todoText, todoCreatedAt, checkBtn, deleteBtn);
     ulList.append(todoContainer);
 
