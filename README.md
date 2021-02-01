@@ -2,8 +2,7 @@
 
 ## My Todo GIF
 
-![Add Hanet-image](./readme-files/Hanet-image.gif)
-
+![Add hanet-image](./readme-files/My-Todo-GIF.gif)
 
 
 
