@@ -25,7 +25,7 @@
 
 ## Enjoy My Page:
 
-  - [My Github Page Link](https://eyalzimerman.github.io/pre-course-2021-final-boilerplate/src/index)
+  - [My Github Page Link](https://eyalzimerman.github.io/pre-course-2021-final-boilerplate/src/index.html)
 
 
 
