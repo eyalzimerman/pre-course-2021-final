@@ -70,6 +70,8 @@ function deleteTodo (e) {
     const deletedObj = deletedDiv.querySelector('.todo-created-at').innerText;
     arrOfObjTasks = arrOfObjTasks.filter(taskObj => taskObj.taskCreatedAt != deletedObj);
     counter--;
+
+    //updating the title of how tasks you did
     if (deletedDiv.className === 'todo-container completed') {
         counterDone--; 
         taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
@@ -146,6 +148,7 @@ function insertTasksFromJSONBINToHtml () {
 
     counterTasks(arrOfObjTasks.length);
     counter = arrOfObjTasks.length;
+    taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
     textInput.focus();
 }
 
