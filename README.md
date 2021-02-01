@@ -16,11 +16,11 @@
 
   ✅ Undo action after you deleted todo - using Array
 
-  ✅ A print button
+  ✅ A print button (also can save PDF file)
 
   ✅ A Loading spinner for network request
 
-  ✅ A button to Mark/Unmark todo as done
+  ✅ A button to Mark/Unmarked todo as done
 
   ✅ I used with Sweet Alert to notify User actions
 
