@@ -43,7 +43,7 @@ function addTodo (e) {
 
         arrOfObjTasks.push(taskObj);
         counter++;
-
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
     } else {
         Swal.fire({
             icon: 'error',
@@ -69,9 +69,15 @@ function deleteTodo (e) {
 
     const deletedObj = deletedDiv.querySelector('.todo-created-at').innerText;
     arrOfObjTasks = arrOfObjTasks.filter(taskObj => taskObj.taskCreatedAt != deletedObj);
-    deletedDiv.remove();
-
     counter--;
+    if (deletedDiv.className === 'todo-container completed') {
+        counterDone--; 
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
+    }
+    if (deletedDiv.className != 'todo-container completed') {
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
+    }
+    deletedDiv.remove();
     counterTasks(counter);
     textInput.focus();
     updateTaskToJSONBin();
@@ -179,6 +185,7 @@ function undoDelete (e) {
         arrOfObjTasks.push(taskObjBack);
         counterTasks(arrOfObjTasks.length);
         counter = arrOfObjTasks.length;
+        taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
         textInput.focus();
         updateTaskToJSONBin();
     }
@@ -228,14 +235,16 @@ function resetAllData (e) {
         confirmButtonText: 'Yes, delete it!'
     }).then((alertMessage) => {
         if (alertMessage.isConfirmed) {
+            counter = 0;
+            counterDone = 0;
+            taskDone.innerText = `You Did ${counterDone}/${counter} Tasks`;
             let resetTasks = ulList.querySelectorAll('.todo-container');
             for (let i = 0; i < resetTasks.length; i++) {
                 resetTasks[i].remove();
-                counter--;
-                counterTasks(counter);
                 textInput.focus();
             }
             arrOfObjTasks = [];
+            counterTasks(counter);
             updateTaskToJSONBin();
             Swal.fire(
             'Deleted!',
