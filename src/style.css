@@ -111,6 +111,7 @@ ul > .todo-container:hover {
 .completed {
     text-decoration: line-through;
     opacity: 0.5;
+    transition: 0.7s;
 }
 
 .fa-trash-alt {
@@ -172,4 +173,11 @@ ul > .todo-container:hover {
 #reset-data:hover {
     color: black;
     opacity: 1;
+}
+#print-page {
+    position: fixed;
+    left: 20%;
+    bottom: 0;
+    font-size: larger;
+    background-color: rgb(138, 173, 197);
 }

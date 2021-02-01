@@ -143,7 +143,7 @@ function insertTasksFromJSONBINToHtml () {
     textInput.focus();
 }
 
-//function to check button
+//function to check button - did or not did
 function checkTask (e) {
     const complete = e.target.parentElement;
     complete.classList.toggle('completed');
@@ -191,7 +191,7 @@ function createTasks (onePriority, texts, time) {
     const todoPriority = document.createElement('div');  //todo priority in div
     const todoCreatedAt = document.createElement('div');  //time to do created in div
     const todoText = document.createElement('div');  //todo task text in div
-    const deleteBtn = document.createElement('button');
+    const deleteBtn = document.createElement('button');  //delete button
     const checkBtn = document.createElement('input');  //checkbox
 
     todoContainer.className = 'todo-container';
@@ -223,7 +223,7 @@ function resetAllData (e) {
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#00cc00',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
     }).then((alertMessage) => {
