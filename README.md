@@ -2,22 +2,30 @@
 
 ## My Todo GIF
 
-![Add hanet-image](./readme-files/My-Todo-GIF.gif)
+![Add My-Todo-GIF](./readme-files/My-Todo-GIF.gif)
 
 
 
-## Bonus
+## Which Bonuses I Did ?
 
-- jsonbin.io - see explanation above
-- Freestyle - add any feature you desire. Some ideas:
-  - [drag n' drop functionality](https://htmldom.dev/drag-and-drop-element-in-a-list)
-  - Delete + Edit a todo
-  - Undo action
-  - Search and highlight results
-  - Loading spinner for network request
-  - Mark/Unmark todo as done
-  - Something awesome we didn't think of...
-- For added value, you can add jest/puppeteer test to test any bonus feature you implemented
+  - I Use "jsonbin.io" to save data
+  - A button that gives the option to delete all todos, and start a new list.
+  - A Delete button for each todo
+  - Undo action after you deleted todo - using Array
+  - A print button
+  - A Loading spinner for network request
+  - A button to Mark/Unmark todo as done
+  - I used with Sweet Alert to notify User actions
+
+
+## Resources I Used: 
+
+  - [W3 School](https://www.w3schools.com/default.asp)
+  - [StackOverflow](https://stackoverflow.com/)
+
+## Enjoy My Page:
+
+  - [My Github Page Link](https://eyalzimerman.github.io/pre-course-2021-final-boilerplate/src/index)
 
 
 
@@ -27,5 +35,3 @@
 - Submit your solution repo to the [ChallengeMe](http://challengeme.suvelocity.org/) system
 - Submit your repo link and github page and video to Google Classroom
 - Record a 5-10 min selfie video, describe yourself in a few words (age, location, military background, technological background). Also, talk about the solution you submitted (try to explain how your app works in general and which bonuses you added). Think about this video as an interview.
-
-GOOD LUCK!
