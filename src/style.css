@@ -12,7 +12,8 @@ body {
     margin: 0 auto;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 header {
