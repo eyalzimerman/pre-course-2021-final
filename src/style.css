@@ -83,7 +83,8 @@ h5 {
     justify-content: space-between;
     align-items: center;
     font-family: 'Gochi Hand', cursive;
-    
+    width: 100%;
+    word-break: break-all;
 }
 
 ul > .todo-container:hover {
