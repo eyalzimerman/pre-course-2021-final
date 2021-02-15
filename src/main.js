@@ -114,32 +114,6 @@ function counterTasks (count) {
     }
 }
 
-//function to update tasks in JSONBIN
-async function updateTaskToJSONBin () {
-    fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d', {
-    method: 'PUT',
-    headers: {
-    'Content-Type': 'application/json',
-    'X-Master-Key': '$2b$10$3c8HlT7Mkm6Fmhp4/y0UveKGq8qFaFdTiTNKewqhEuXpQ9l7Itxdm',
-  },
-    body: JSON.stringify({"my-todo": arrOfObjTasks}) 
-});
-}
-
-//function to get tasks from JSONBIN   
-async function getTasksFromJSONBin() {
-    let response = await fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d/latest', {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Master-Key": "$2b$10$3c8HlT7Mkm6Fmhp4/y0UveKGq8qFaFdTiTNKewqhEuXpQ9l7Itxdm",
-      },
-    });
-    let data = await response.json();
-    arrOfObjTasks = data.record["my-todo"];
-    insertTasksFromJSONBINToHtml();
-}
-
 //function to insert data from JSONBIN to HTML
 function insertTasksFromJSONBINToHtml () {
     for (let i = 0; i < arrOfObjTasks.length; i++) {
