@@ -4,7 +4,9 @@ const DB_NAME = "my-todo";
 
 //function to update tasks in JSONBIN
 function updateTaskToJSONBin () {
-  let x = addloader();
+  let loader = addloader();
+  ulList.style.visibility = 'hidden';
+  taskDone.style.visibility = 'hidden';
   document.body.style.opacity = '0.5';
   fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d', {
   method: 'PUT',
@@ -17,7 +19,9 @@ function updateTaskToJSONBin () {
   if (!res.ok) {
     throw new Error('failed to update json.bin');
   }
-  document.body.removeChild(x);
+  document.body.removeChild(loader);
+  ulList.style.visibility = 'visible';
+  taskDone.style.visibility = 'visible';
   document.body.style.opacity = '1';
   return res.json();
 }).catch(error => {
@@ -27,7 +31,9 @@ function updateTaskToJSONBin () {
 
 //function to get tasks from JSONBIN   
 function getTasksFromJSONBin() {
-  let x = addloader();
+  let loader = addloader();
+  ulList.style.visibility = 'hidden';
+  taskDone.style.visibility = 'hidden';
   document.body.style.opacity = '0.5';
   fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d/latest', {
     method: "GET",
@@ -39,7 +45,9 @@ function getTasksFromJSONBin() {
     if (!res.ok) {
       throw new Error('failed to get from json.bin');
     }
-    document.body.removeChild(x);
+    document.body.removeChild(loader);
+    ulList.style.visibility = 'visible';
+    taskDone.style.visibility = 'visible';
     document.body.style.opacity = '1';
     return res.json().then(data => {
       arrOfObjTasks = data.record["my-todo"];
