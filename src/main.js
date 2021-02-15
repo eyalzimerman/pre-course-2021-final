@@ -17,6 +17,7 @@ let arrOfObjTasks = [];
 let arrOfDeletedTodo = [];
 counterTitle.innerHTML = 'No Tasks To Do';
 
+
 //event listeners
 document.addEventListener('DOMContentLoaded', getTasksFromJSONBin);
 addBtn.addEventListener('click', addTodo);
@@ -141,11 +142,6 @@ function checkTask (e) {
     textInput.focus(); 
 }
 
-//loader function
-$(window).load(function() {
-    $(".se-pre-con").fadeOut("medium");
-});
-
 //function to undo deleted task
 function undoDelete (e) {
     if(arrOfDeletedTodo.length > 0) {
@@ -230,4 +226,11 @@ function resetAllData (e) {
             )
         };
     });
+}
+
+function addloader () {
+    let loaderDiv =  document.createElement('div');
+    loaderDiv.className = 'loader';
+    document.body.appendChild(loaderDiv);
+    return loaderDiv;
 }

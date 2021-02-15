@@ -4,6 +4,8 @@ const DB_NAME = "my-todo";
 
 //function to update tasks in JSONBIN
 function updateTaskToJSONBin () {
+  let x = addloader();
+  document.body.style.opacity = '0.5';
   fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d', {
   method: 'PUT',
   headers: {
@@ -15,6 +17,8 @@ function updateTaskToJSONBin () {
   if (!res.ok) {
     throw new Error('failed to update json.bin');
   }
+  document.body.removeChild(x);
+  document.body.style.opacity = '1';
   return res.json();
 }).catch(error => {
   console.log(error);
@@ -23,6 +27,8 @@ function updateTaskToJSONBin () {
 
 //function to get tasks from JSONBIN   
 function getTasksFromJSONBin() {
+  let x = addloader();
+  document.body.style.opacity = '0.5';
   fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d/latest', {
     method: "GET",
     headers: {
@@ -31,8 +37,10 @@ function getTasksFromJSONBin() {
     },
   }).then(res => {
     if (!res.ok) {
-      throw new Error('failed to update json.bin');
+      throw new Error('failed to get from json.bin');
     }
+    document.body.removeChild(x);
+    document.body.style.opacity = '1';
     return res.json().then(data => {
       arrOfObjTasks = data.record["my-todo"];
       insertTasksFromJSONBINToHtml();
