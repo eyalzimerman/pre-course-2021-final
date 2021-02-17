@@ -24,20 +24,20 @@ router.get("/:id", (request, response) => {
   response.json(body);
 });
 
-// router.post("/", (request, response) => {
-//   const { body } = request;
-//   console.log(body);
-//   const id = Date.now();
-//   try {
-//     fs.writeFileSync(
-//       `./backend/bins/${id}.json`,
-//       JSON.stringify(body, null, 4)
-//       );
-//       response.status(201).send(`task added, name:${id}`);
-//   } catch (e) {
-//     response.status(500).json({ message: "Error!", error: e });
-//   }
-// });
+router.post("/", (request, response) => {
+  const { body } = request;
+  console.log(body);
+  const id = Date.now();
+  try {
+    fs.writeFileSync(
+      `./backend/bins/${id}.json`,
+      JSON.stringify(body, null, 4)
+      );
+      response.status(201).send(`task added, name: ${id}`);
+  } catch (e) {
+    response.status(500).json({ message: "Error!", error: e });
+  }
+});
 
 // router.put("/:created", (request, response) => {
 //   const { created } = request.params;
