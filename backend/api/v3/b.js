@@ -51,4 +51,16 @@ router.put("/:id", (request, response) => {
         response.status(500).json({ message: "Error!"});
 });
 
+router.delete('/:id',(request, response)=>{
+    let allUsers = fs.readdirSync('./backend/bins');
+    const { id } = request.params;
+    for(let i = 0; i< allUsers.length; i++){
+        if (allUsers[i] === `${id}.json`) {
+            fs.unlinkSync(`./backend/bins/${id}.json`);
+            response.send('removed');
+        }
+    }
+    response.status(500).json({ message: "Error!"});
+});
+
 module.exports = router;
