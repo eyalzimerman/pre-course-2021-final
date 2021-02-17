@@ -25,6 +25,7 @@
     "puppeteer": "^4.0.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "sweetalert2": "^10.14.0"
   }
 }
