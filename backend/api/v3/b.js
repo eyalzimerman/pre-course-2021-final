@@ -26,7 +26,6 @@ router.get("/:id", (request, response) => {
 
 router.post("/", (request, response) => {
   const { body } = request;
-  console.log(body);
   const id = Date.now();
   try {
     fs.writeFileSync(
@@ -39,18 +38,17 @@ router.post("/", (request, response) => {
   }
 });
 
-router.put("/:created", (request, response) => {
-  const { created } = request.params;
-  const { body } = request;
-  try {
-    fs.writeFileSync(
-      `./backend/bins/${created}.json`,
-      JSON.stringify(body, null, 4)
-    );
-    response.json(body);
-  } catch (e) {
-    response.status(500).json({ message: "Error!", error: e });
-  }
+router.put("/:id", (request, response) => {
+    let allUsers = fs.readdirSync('./backend/bins');
+    const { id } = request.params;
+    const { body } = request;
+        for (let i = 0; i < allUsers.length; i++) {
+            if (allUsers[i] === `${id}.json`) {
+                    fs.writeFileSync(`./backend/bins/${id}.json`, JSON.stringify(body, null, 4));
+                    response.json(body);
+            }
+        }
+        response.status(500).json({ message: "Error!"});
 });
 
 module.exports = router;
