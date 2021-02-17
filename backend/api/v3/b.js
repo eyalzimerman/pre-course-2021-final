@@ -39,18 +39,18 @@ router.post("/", (request, response) => {
   }
 });
 
-// router.put("/:created", (request, response) => {
-//   const { created } = request.params;
-//   const { body } = request;
-//   try {
-//     fs.writeFileSync(
-//       `./greets/greet-${created}.json`,
-//       JSON.stringify(body, null, 4)
-//     );
-//     response.json(body);
-//   } catch (e) {
-//     response.status(500).json({ message: "Error!", error: e });
-//   }
-// });
+router.put("/:created", (request, response) => {
+  const { created } = request.params;
+  const { body } = request;
+  try {
+    fs.writeFileSync(
+      `./backend/bins/${created}.json`,
+      JSON.stringify(body, null, 4)
+    );
+    response.json(body);
+  } catch (e) {
+    response.status(500).json({ message: "Error!", error: e });
+  }
+});
 
 module.exports = router;
