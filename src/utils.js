@@ -8,7 +8,7 @@ function updateTaskToJSONBin () {
   ulList.style.visibility = 'hidden';
   taskDone.style.visibility = 'hidden';
   document.body.style.opacity = '0.5';
-  fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d', {
+  fetch('http://localhost:3001/api/v3/b/1613733054301', {
   method: 'PUT',
   headers: {
   'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ function getTasksFromJSONBin() {
   ulList.style.visibility = 'hidden';
   taskDone.style.visibility = 'hidden';
   document.body.style.opacity = '0.5';
-  fetch('https://api.jsonbin.io/v3/b/6015e6c1abdf9c5567951e2d/latest', {
+  fetch('http://localhost:3001/api/v3/b/1613733054301', {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -50,7 +50,7 @@ function getTasksFromJSONBin() {
     taskDone.style.visibility = 'visible';
     document.body.style.opacity = '1';
     return res.json().then(data => {
-      arrOfObjTasks = data.record["my-todo"];
+      arrOfObjTasks = data["my-todo"];
       insertTasksFromJSONBINToHtml();
     })
   }).catch(error => {
