@@ -32,4 +32,4 @@
 
 ## Enjoy My Page:
 
-  - [My Github Page Link](https://eyalzimerman.github.io/pre-course-2021-final-boilerplate/src/index.html)
+  - [My Github Page Link](https://eyalzimerman.github.io/pre-course-2021-final/src/index.html)
