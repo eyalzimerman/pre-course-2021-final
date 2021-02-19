@@ -17,7 +17,11 @@ function updateTaskToJSONBin () {
   body: JSON.stringify({"my-todo": arrOfObjTasks}) 
 }).then(res => {
   if (!res.ok) {
-    throw new Error('failed to update json.bin');
+    document.body.removeChild(loader);
+    ulList.style.visibility = 'visible';
+    taskDone.style.visibility = 'visible';
+    document.body.style.opacity = '1';
+    throw new Error('failed to update local host');
   }
   document.body.removeChild(loader);
   ulList.style.visibility = 'visible';
@@ -43,7 +47,11 @@ function getTasksFromJSONBin() {
     },
   }).then(res => {
     if (!res.ok) {
-      throw new Error('failed to get from json.bin');
+      document.body.removeChild(loader);
+      ulList.style.visibility = 'visible';
+      taskDone.style.visibility = 'visible';
+      document.body.style.opacity = '1';
+      throw new Error('failed to get from local host');
     }
     document.body.removeChild(loader);
     ulList.style.visibility = 'visible';
