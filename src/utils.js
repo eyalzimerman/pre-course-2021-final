@@ -21,6 +21,8 @@ function updateTaskToJSONBin () {
   taskDone.style.visibility = 'visible';
   document.body.style.opacity = '1';
   if (!res.ok) {
+    let message = document.querySelector('.update-failed-message');
+    message.style.visibility = 'visible';
     throw new Error('Failed To Update Local Host');
   }
   return res.json();
@@ -47,6 +49,8 @@ function getTasksFromJSONBin() {
     taskDone.style.visibility = 'visible';
     document.body.style.opacity = '1';
     if (!res.ok) {
+      let message = document.querySelector('.get-failed-message');
+      message.style.visibility = 'visible';
       throw new Error('Failed To Update Local Host');
     }
     return res.json().then(data => {
