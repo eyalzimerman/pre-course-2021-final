@@ -16,17 +16,13 @@ function updateTaskToJSONBin () {
 },
   body: JSON.stringify({"my-todo": arrOfObjTasks}) 
 }).then(res => {
-  if (!res.ok) {
-    document.body.removeChild(loader);
-    ulList.style.visibility = 'visible';
-    taskDone.style.visibility = 'visible';
-    document.body.style.opacity = '1';
-    throw new Error('failed to update local host');
-  }
   document.body.removeChild(loader);
   ulList.style.visibility = 'visible';
   taskDone.style.visibility = 'visible';
   document.body.style.opacity = '1';
+  if (!res.ok) {
+    throw new Error('Failed To Update Local Host');
+  }
   return res.json();
 }).catch(error => {
   console.log(error);
@@ -46,17 +42,13 @@ function getTasksFromJSONBin() {
       "X-Master-Key": "$2b$10$3c8HlT7Mkm6Fmhp4/y0UveKGq8qFaFdTiTNKewqhEuXpQ9l7Itxdm",
     },
   }).then(res => {
-    if (!res.ok) {
-      document.body.removeChild(loader);
-      ulList.style.visibility = 'visible';
-      taskDone.style.visibility = 'visible';
-      document.body.style.opacity = '1';
-      throw new Error('failed to get from local host');
-    }
     document.body.removeChild(loader);
     ulList.style.visibility = 'visible';
     taskDone.style.visibility = 'visible';
     document.body.style.opacity = '1';
+    if (!res.ok) {
+      throw new Error('Failed To Update Local Host');
+    }
     return res.json().then(data => {
       arrOfObjTasks = data["my-todo"];
       insertTasksFromJSONBINToHtml();
